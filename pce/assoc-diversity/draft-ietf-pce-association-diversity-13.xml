@@ -218,7 +218,7 @@ When a PCC or PCE initiates all the LSPs in a particular disjoint-group, it can 
                  |                                       
                  |                       PCReq/PCRpt
                  V                        {DAG Y}      
-              +-----+               ----------------> +-----+
+              +-----+                ----------------> +-----+
    _ _ _ _ _ _| PCE |               |                  | PCE |
   |           +-----+               |      ----------> +-----+
   | PCInitiate                      |     |    PCReq/PCRpt

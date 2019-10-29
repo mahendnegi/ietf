@@ -302,7 +302,7 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
                    |
                    |                       PCReq/PCRpt
                    V                        {DAG Y}
-                +-----+               ----------------> +-----+
+                +-----+                ----------------> +-----+
      _ _ _ _ _ _| PCE |               |                  | PCE |
     |           +-----+               |      ----------> +-----+
     | PCInitiate                      |     |    PCReq/PCRpt
