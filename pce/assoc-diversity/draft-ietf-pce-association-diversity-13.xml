@@ -272,11 +272,11 @@ Case 1: Disjointness initiated by    Case 2: Disjointness initiated by
    <t>A disjoint group can have two or more LSPs, but a PCE may be limited in the number of LSPs it can take into account when computing disjointness.
    If a PCE receives more LSPs in the group than it can handle in its computation algorithm, it SHOULD apply disjointness computation to only a subset of LSPs in the group. The subset of disjoint LSPs will be decided by PCE as a local policy. Local polices MAY define the computational behavior for the other LSPs in the group.  For example, the PCE may provide no path, a shortest path, or a constrained path based on relaxing disjointness, etc. The disjoint status of the computed path is informed to the PCC via DISJOINTNESS-STATUS-TLV (see <xref target="tlvs"/>).</t>
 
-   <t>There are differet types of disjointness identified by the flags (T, S, N, L) in the DISJOINTNESS-CONFIGURATION-TLV (see <xref target="tlvs"/>). All LSPs in a particular disjoint group MUST use the same combination of T, S, N, L flags in the DISJOINTNESS-CONFIGURATION-TLV.  If a PCEP peer receives a PCEP messages for LSPs belonging to the same disjoint group but having an inconsistent combination of T, S, N, L flags, the PCEP peer MUST NOT add the LSPs in disjoint group and MUST reply with a PCErr with Error-type 26 (Association Error) and Error-Value 6 (Association information mismatch).</t>
+   <t>There are differet types of disjointness identified by the flags (T, S, N, L) in the DISJOINTNESS-CONFIGURATION-TLV (see <xref target="tlvs"/>). All LSPs in a particular disjoint group MUST use the same combination of T, S, N, L flags in the DISJOINTNESS-CONFIGURATION-TLV.  If a PCEP peer receives a PCEP messages for LSPs belonging to the same disjoint group but having an inconsistent combination of T, S, N, L flags, the PCEP peer MUST NOT add the LSPs in the disjoint group and MUST reply with a PCErr with Error-type 26 (Association Error) and Error-Value 6 (Association information mismatch).</t>
 
     <!--<t>Associating a particular LSP to multiple disjoint groups is authorized from a protocol perspective, however there is no assurance that the PCE will be able to compute properly the multi-disjointness constraint.</t>-->
 
-    <t>A particular LSP MAY be associated to multiple disjoint groups, but in that case, the PCE SHOULD try to consider all the disjoint groups during path computation if possible. Otherwise a local policy MAY define the computational behavior. If a PCE does not support such a path computation it MUST NOT add the LSP into association group and return a PCErr with Error-type 26 (Association Error) and Error-Value 7 (Cannot join the association group).</t> 
+    <t>A particular LSP MAY be associated to the multiple disjoint groups, but in that case, the PCE SHOULD try to consider all the disjoint groups during path computation if possible. Otherwise a local policy MAY define the computational behavior. If a PCE does not support such a path computation it MUST NOT add the LSP into the association group and return a PCErr with Error-type 26 (Association Error) and Error-Value 7 (Cannot join the association group).</t> 
 
     </section>
     <section title="Disjoint TLVs" anchor="tlvs" toc="default">
@@ -287,7 +287,7 @@ Case 1: Disjointness initiated by    Case 2: Disjointness initiated by
     </list>
     </t>
     <t>
-    In addition, the disjoint group MAY carry the following TLV:
+    In addition, the disjoint group MAY carry the following TLVs:
     <list style="symbols">
     <t>DISJOINTNESS-STATUS-TLV: Used to communicate the status of the computed disjointness. This is applicable for messages from PCE to PCC (PCUpd, PCInitiate  or PCRep message).</t>
   <t>VENDOR-INFORMATION-TLV: Used to communicate arbitrary vendor-specific behavioral
@@ -341,7 +341,7 @@ or using the local policy if no objective function is requested (e.g. using a lo
       </list>
       </t>
       <t>
-      If a PCEP speaker receives a disjoint-group without DISJOINTNESS-CONFIGURATION-TLV, it SHOULD reply with a PCErr Error-type=6 (Mandatory Object missing) and Error-value=TBD8 (DISJOINTNESS-CONFIGURATION-TLV missing).
+      If a PCEP speaker receives a disjoint-group without DISJOINTNESS-CONFIGURATION-TLV, it SHOULD reply with a PCErr Error-type=6 (Mandatory Object missing) and Error-value=TBD10 (DISJOINTNESS-CONFIGURATION-TLV missing).
       </t>
       <t>The DISJOINTNESS-STATUS-TLV uses the same format as the DISJOINTNESS-CONFIGURATION-TLV with a different type TBD3 (in the TLV). The L, N, and S flags are set if the respective disjointness criterion was requested and the computed paths meet it. The P flag indicates that the computed path is the shortest path (computed first without taking disjointness constraints into consideration, but considering other constraints).</t> 
       <t>The T flag has no meaning in the DISJOINTNESS-STATUS-TLV and MUST NOT be set while sending and MUST be ignored on receipt.
@@ -387,7 +387,7 @@ or using the local policy if no objective function is requested (e.g. using a lo
          <t>A path P passes through K links {Lpi,(i=1...K)}.</t>
 
          <t>A set of paths {P1...Pm} have L links that are
-            common to more than one path {Lpi,(i=1...L)}.</t>
+            common to more than one path {Lci,(i=1...L)}.</t>
 
          <t>Find a set of paths such that the value of L is minimized.</t>
       </list></t>
@@ -405,7 +405,7 @@ or using the local policy if no objective function is requested (e.g. using a lo
          <t>A path P passes through K links {Lpi,(i=1...K)} belonging to unique M SRLGs {Spi,(i=1..M)}.</t>
 
          <t>A set of paths {P1...Pm} have L SRLGs that are
-            common to more than one path {Spi,(i=1...L)}.</t>
+            common to more than one path {Sci,(i=1...L)}.</t>
 
          <t>Find a set of paths such that the value of L is minimized.</t>
       </list></t>
@@ -423,18 +423,15 @@ or using the local policy if no objective function is requested (e.g. using a lo
          <t>A path P passes through K nodes {Npi,(i=1...K)}.</t>
 
          <t>A set of paths {P1...Pm} have L nodes that are
-            common to more than one path {Npi,(i=1...L)}.</t>
+            common to more than one path {Nci,(i=1...L)}.</t>
 
          <t>Find a set of paths such that the value of L is minimized.</t>
       </list></t>
       </list>
       </t>
       <t>If the OF-list TLV is included in the Association Object, 
-   the OF-code inside the OF Object MUST include one of the disjoint
-   OFs defined in this document. If this 
-   condition is not met, the PCEP speaker MUST respond with a PCErr 
-   message with Error-Type=10 (Reception of an invalid object) and 
-   Error-Value=TBD9 (Incompatible OF code).</t>  
+   the first OF-code inside the OF Object MUST be one of the disjoint OFs defined in this document. If this condition is not met, the PCEP speaker MUST respond with a PCErr message with Error-Type=10 (Reception of an invalid object) and 
+   Error-Value=TBD9 (Incompatible OF code).</t>
       </section>
       <!-- Disjointness-objective-functions -->      
      <section title="Relationship to SVEC" toc="default" anchor="svec">
@@ -604,12 +601,11 @@ Cost of all the links is 1, unless explicitly marked otherwise.
     <section title="Security Considerations" toc="default">
       <t>This document defines one new PCEP association type, which on itself does not add any new
       security concerns beyond those discussed in <xref target="RFC5440"/>,
-      <xref target="RFC8231"/> and <xref target="I-D.ietf-pce-association-group"/>. But, adding of a spurious LSP into the disjointness association group could lead to re-computation and set-up of all LSPs in the group, that could be used to overwhelm the PCE and the network. 
+      <xref target="RFC8231"/>, <xref target="RFC7470"/> and <xref target="I-D.ietf-pce-association-group"/>. But, adding of a spurious LSP into the disjointness association group could lead to re-computation and set-up of all LSPs in the group, that could be used to overwhelm the PCE and the network. 
       </t>
       <t> A spurious LSP can have flags that are inconsistent with those of the legitimate LSPs of the group and thus cause LSP allocation for the legitimate LSPs to fail with an error.
       </t>
-     <t>Also, as stated in <xref target="I-D.ietf-pce-association-group"/>, much of the information carried in the Disjointness Association object, as per this document is not extra sensitive. It often reflects information
-    that can also be derived from the LSP Database, but association provides a much easier grouping of related LSPs and messages. The disjointness association could provide an adversary with the opportunity to eavesdrop on the relationship between the LSPs.</t>
+     <t>Also, as stated in <xref target="I-D.ietf-pce-association-group"/>, much of the information carried in the Disjointness Association object reflects information that can also be derived from the LSP Database, but association provides a much easier grouping of related LSPs and messages. The disjointness association could provide an adversary with the opportunity to eavesdrop on the relationship between the LSPs and understand the network topology.</t>
     <t>Thus securing the PCEP session using Transport Layer
    Security (TLS) <xref target="RFC8253"/>, as per the recommendations and
    best current practices in BCP 195 <xref target="RFC7525"/>, is RECOMMENDED.</t>
@@ -706,7 +702,7 @@ Cost of all the links is 1, unless explicitly marked otherwise.
           <texttable>
            <ttcol> Error-Type </ttcol><ttcol> Meaning </ttcol><ttcol> Reference </ttcol>
            <c> 6 </c> <c> Mandatory Object missing</c> <c><xref target="I-D.ietf-pce-association-group"/></c>
-           <c> </c><c> Error-value=TBD8: DISJOINTNESS-CONFIGURATION TLV missing</c> <c> [This.I-D] </c>
+           <c> </c><c> Error-value=TBD10: DISJOINTNESS-CONFIGURATION TLV missing</c> <c> [This.I-D] </c>
            <c> 10 </c> <c> Reception of an invalid object</c> <c><xref target="RFC5440"/></c>
            <c> </c> <c> Error-value=TBD9: Incompatible OF code</c> <c> [This.I-D] </c>
           </texttable>
@@ -716,13 +712,13 @@ Cost of all the links is 1, unless explicitly marked otherwise.
       <section title="Control of Function and Policy" toc="default">
         <t>
    An operator SHOULD be allowed to configure the disjointness association groups and disjoint parameters at the PCEP peers
-   and associate it with the LSPs. The Operator-configured Association Range MUST be allowed to be set by the operator. Operator SHOULD be allowed to set the local policies to define various disjoint computational behavior at the PCE.</t>
+   and associate it with the LSPs. The Operator-configured Association Range MUST be allowed to be set by the operator. The operator SHOULD be allowed to set the local policies to define various disjoint computational behavior at the PCE.</t>
       </section>
       <section title="Information and Data Models" toc="default">
         <t>An implementation SHOULD allow the operator to view the disjoint associations
-   configured or created dynamically.  Further implementation SHOULD
+   configured or created dynamically. Furthermore, implementations SHOULD
    allow to view disjoint associations reported by each peer, and the current set
-   of LSPs in this association.  The PCEP YANG
+   of LSPs in this association. The PCEP YANG
    module <xref target="I-D.ietf-pce-pcep-yang"/> includes association groups information.</t>
       </section>
       <section title="Liveness Detection and Monitoring" toc="default">
@@ -749,8 +745,9 @@ Cost of all the links is 1, unless explicitly marked otherwise.
       <t>A special thanks to authors of
       <xref target="I-D.ietf-pce-association-group"/>, this document borrow
       some of the text from it. Authors would also like to thank Adrian Farrel and Julien Meuric for the valuable comments.</t>
-      <t>Thanks to Emmanuel Baccelli for RTGDIR reviews.</t>
+      <t>Thanks to Emmanuel Baccelli for RTGDIR review.</t>
       <t>Thanks to Dale Worley for a detailed GENART review.</t>
+      <t>Thanks to Alvaro Retana, Benjamin Kaduk, Suresh Krishnan, Roman Danyliw, Alissa Cooper and Eric Vyncke for IESG review. </t>
 
     </section>
   </middle>
@@ -760,17 +757,18 @@ Cost of all the links is 1, unless explicitly marked otherwise.
     <?rfc include="reference.RFC.8126.xml"?>    
     <?rfc include="reference.RFC.5440.xml" ?>
     <?rfc include="reference.RFC.5541.xml" ?>
+    <?rfc include="reference.RFC.7470.xml" ?>
     <?rfc include="reference.RFC.8174.xml"?>
     <?rfc include="reference.RFC.8231.xml"?>
+    <?rfc include="reference.RFC.8253.xml"?>
     <?rfc include="reference.I-D.ietf-pce-association-group"?>
     </references>
     <references title="Informative References">
         <?rfc include="reference.RFC.4655.xml" ?>
      <?rfc include="reference.RFC.6007.xml" ?>
-     <?rfc include="reference.RFC.7470.xml" ?>
+     
      <!--<?rfc include="reference.RFC.7420.xml" ?>-->
      <?rfc include="reference.RFC.7525.xml" ?>
-     <?rfc include="reference.RFC.8253.xml"?>
      <?rfc include="reference.RFC.8281.xml"?>
      <?rfc include="reference.I-D.ietf-pce-pcep-yang"?>
     </references>

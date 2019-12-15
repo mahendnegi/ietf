@@ -5,11 +5,11 @@
 PCE Working Group                                           S. Litkowski
 Internet-Draft                                              S. Sivabalan
 Intended status: Standards Track                     Cisco Systems, Inc.
-Expires: May 1, 2020                                            C. Barth
+Expires: June 17, 2020                                          C. Barth
                                                         Juniper Networks
                                                                  M. Negi
                                                      Huawei Technologies
-                                                        October 29, 2019
+                                                       December 15, 2019
 
 
 Path Computation Element Communication Protocol (PCEP) Extension for LSP
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 1, 2020.
+   This Internet-Draft will expire on June 17, 2020.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Litkowski, et al.          Expires May 1, 2020                  [Page 1]
+Litkowski, et al.         Expires June 17, 2020                 [Page 1]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Litkowski, et al.          Expires May 1, 2020                  [Page 2]
+Litkowski, et al.         Expires June 17, 2020                 [Page 2]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
 1.  Introduction
@@ -165,9 +165,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                  [Page 3]
+Litkowski, et al.         Expires June 17, 2020                 [Page 3]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
    PCC:  Path Computation Client.  Any client application requesting a
@@ -221,9 +221,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                  [Page 4]
+Litkowski, et al.         Expires June 17, 2020                 [Page 4]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
             _________________________________________
@@ -277,9 +277,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                  [Page 5]
+Litkowski, et al.         Expires June 17, 2020                 [Page 5]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
    disjoint group identifiers, and any customization parameters
@@ -333,9 +333,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                  [Page 6]
+Litkowski, et al.         Expires June 17, 2020                 [Page 6]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
    o  Configuration: Used to communicate the configured disjoint
@@ -389,9 +389,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                  [Page 7]
+Litkowski, et al.         Expires June 17, 2020                 [Page 7]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
    handle in its computation algorithm, it SHOULD apply disjointness
@@ -409,17 +409,17 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
    of T, S, N, L flags in the DISJOINTNESS-CONFIGURATION-TLV.  If a PCEP
    peer receives a PCEP messages for LSPs belonging to the same disjoint
    group but having an inconsistent combination of T, S, N, L flags, the
-   PCEP peer MUST NOT add the LSPs in disjoint group and MUST reply with
-   a PCErr with Error-type 26 (Association Error) and Error-Value 6
+   PCEP peer MUST NOT add the LSPs in the disjoint group and MUST reply
+   with a PCErr with Error-type 26 (Association Error) and Error-Value 6
    (Association information mismatch).
 
-   A particular LSP MAY be associated to multiple disjoint groups, but
-   in that case, the PCE SHOULD try to consider all the disjoint groups
-   during path computation if possible.  Otherwise a local policy MAY
-   define the computational behavior.  If a PCE does not support such a
-   path computation it MUST NOT add the LSP into association group and
-   return a PCErr with Error-type 26 (Association Error) and Error-Value
-   7 (Cannot join the association group).
+   A particular LSP MAY be associated to the multiple disjoint groups,
+   but in that case, the PCE SHOULD try to consider all the disjoint
+   groups during path computation if possible.  Otherwise a local policy
+   MAY define the computational behavior.  If a PCE does not support
+   such a path computation it MUST NOT add the LSP into the association
+   group and return a PCErr with Error-type 26 (Association Error) and
+   Error-Value 7 (Cannot join the association group).
 
 5.2.  Disjoint TLVs
 
@@ -428,7 +428,7 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
    o  DISJOINTNESS-CONFIGURATION-TLV: Used to communicate some
       disjointness configuration parameters.
 
-   In addition, the disjoint group MAY carry the following TLV:
+   In addition, the disjoint group MAY carry the following TLVs:
 
    o  DISJOINTNESS-STATUS-TLV: Used to communicate the status of the
       computed disjointness.  This is applicable for messages from PCE
@@ -445,9 +445,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                  [Page 8]
+Litkowski, et al.         Expires June 17, 2020                 [Page 8]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
     0                   1                   2                   3
@@ -501,14 +501,14 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                  [Page 9]
+Litkowski, et al.         Expires June 17, 2020                 [Page 9]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
    If a PCEP speaker receives a disjoint-group without DISJOINTNESS-
    CONFIGURATION-TLV, it SHOULD reply with a PCErr Error-type=6
-   (Mandatory Object missing) and Error-value=TBD8 (DISJOINTNESS-
+   (Mandatory Object missing) and Error-value=TBD10 (DISJOINTNESS-
    CONFIGURATION-TLV missing).
 
    The DISJOINTNESS-STATUS-TLV uses the same format as the DISJOINTNESS-
@@ -557,15 +557,15 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                 [Page 10]
+Litkowski, et al.         Expires June 17, 2020                [Page 10]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
       *  A path P passes through K links {Lpi,(i=1...K)}.
 
       *  A set of paths {P1...Pm} have L links that are common to more
-         than one path {Lpi,(i=1...L)}.
+         than one path {Lci,(i=1...L)}.
 
       *  Find a set of paths such that the value of L is minimized.
 
@@ -584,7 +584,7 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
          unique M SRLGs {Spi,(i=1..M)}.
 
       *  A set of paths {P1...Pm} have L SRLGs that are common to more
-         than one path {Spi,(i=1...L)}.
+         than one path {Sci,(i=1...L)}.
 
       *  Find a set of paths such that the value of L is minimized.
 
@@ -602,23 +602,23 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
       *  A path P passes through K nodes {Npi,(i=1...K)}.
 
       *  A set of paths {P1...Pm} have L nodes that are common to more
-         than one path {Npi,(i=1...L)}.
+         than one path {Nci,(i=1...L)}.
 
       *  Find a set of paths such that the value of L is minimized.
 
-   If the OF-list TLV is included in the Association Object, the OF-code
-   inside the OF Object MUST include one of the disjoint OFs defined in
-   this document.  If this condition is not met, the PCEP speaker MUST
+   If the OF-list TLV is included in the Association Object, the first
+   OF-code inside the OF Object MUST be one of the disjoint OFs defined
+   in this document.  If this condition is not met, the PCEP speaker
 
 
 
 
-Litkowski, et al.          Expires May 1, 2020                 [Page 11]
+Litkowski, et al.         Expires June 17, 2020                [Page 11]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
-   respond with a PCErr message with Error-Type=10 (Reception of an
+   MUST respond with a PCErr message with Error-Type=10 (Reception of an
    invalid object) and Error-Value=TBD9 (Incompatible OF code).
 
 5.4.  Relationship to SVEC
@@ -669,9 +669,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                 [Page 12]
+Litkowski, et al.         Expires June 17, 2020                [Page 12]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
    specification of minimization of common shared resources (Node, Link
@@ -725,9 +725,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                 [Page 13]
+Litkowski, et al.         Expires June 17, 2020                [Page 13]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
    to a similar path without the disjointness constraint).  Without such
@@ -781,9 +781,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                 [Page 14]
+Litkowski, et al.         Expires June 17, 2020                [Page 14]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
    other LSP should be disjoint from this path.  The second LSP will be
@@ -837,9 +837,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                 [Page 15]
+Litkowski, et al.         Expires June 17, 2020                [Page 15]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
    Regarding PE1->PE2, there are two paths that are satisfying the
@@ -893,9 +893,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                 [Page 16]
+Litkowski, et al.         Expires June 17, 2020                [Page 16]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
    configuration, the DISJOINTNESS-STATUS-TLV defines the achieved level
@@ -912,8 +912,8 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
    This document defines one new PCEP association type, which on itself
    does not add any new security concerns beyond those discussed in
-   [RFC5440], [RFC8231] and [I-D.ietf-pce-association-group].  But,
-   adding of a spurious LSP into the disjointness association group
+   [RFC5440], [RFC8231], [RFC7470] and [I-D.ietf-pce-association-group].
+   But, adding of a spurious LSP into the disjointness association group
    could lead to re-computation and set-up of all LSPs in the group,
    that could be used to overwhelm the PCE and the network.
 
@@ -922,12 +922,12 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
    legitimate LSPs to fail with an error.
 
    Also, as stated in [I-D.ietf-pce-association-group], much of the
-   information carried in the Disjointness Association object, as per
-   this document is not extra sensitive.  It often reflects information
-   that can also be derived from the LSP Database, but association
-   provides a much easier grouping of related LSPs and messages.  The
-   disjointness association could provide an adversary with the
-   opportunity to eavesdrop on the relationship between the LSPs.
+   information carried in the Disjointness Association object reflects
+   information that can also be derived from the LSP Database, but
+   association provides a much easier grouping of related LSPs and
+   messages.  The disjointness association could provide an adversary
+   with the opportunity to eavesdrop on the relationship between the
+   LSPs and understand the network topology.
 
    Thus securing the PCEP session using Transport Layer Security (TLS)
    [RFC8253], as per the recommendations and best current practices in
@@ -949,9 +949,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                 [Page 17]
+Litkowski, et al.         Expires June 17, 2020                [Page 17]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
     +------------------+--------------------------------+-------------+
@@ -1005,9 +1005,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                 [Page 18]
+Litkowski, et al.         Expires June 17, 2020                [Page 18]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
 7.3.  Objective Functions
@@ -1061,9 +1061,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                 [Page 19]
+Litkowski, et al.         Expires June 17, 2020                [Page 19]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
    +----------+-------------------------+------------------------------+
@@ -1072,7 +1072,7 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
    +----------+-------------------------+------------------------------+
    | 6        | Mandatory Object        | [I-D.ietf-pce-association-gr |
    |          | missing                 | oup]                         |
-   |          | Error-value=TBD8:       | [This.I-D]                   |
+   |          | Error-value=TBD10:      | [This.I-D]                   |
    |          | DISJOINTNESS-           |                              |
    |          | CONFIGURATION TLV       |                              |
    |          | missing                 |                              |
@@ -1089,17 +1089,17 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
    An operator SHOULD be allowed to configure the disjointness
    association groups and disjoint parameters at the PCEP peers and
    associate it with the LSPs.  The Operator-configured Association
-   Range MUST be allowed to be set by the operator.  Operator SHOULD be
-   allowed to set the local policies to define various disjoint
+   Range MUST be allowed to be set by the operator.  The operator SHOULD
+   be allowed to set the local policies to define various disjoint
    computational behavior at the PCE.
 
 8.2.  Information and Data Models
 
    An implementation SHOULD allow the operator to view the disjoint
-   associations configured or created dynamically.  Further
-   implementation SHOULD allow to view disjoint associations reported by
-   each peer, and the current set of LSPs in this association.  The PCEP
-   YANG module [I-D.ietf-pce-pcep-yang] includes association groups
+   associations configured or created dynamically.  Furthermore,
+   implementations SHOULD allow to view disjoint associations reported
+   by each peer, and the current set of LSPs in this association.  The
+   PCEP YANG module [I-D.ietf-pce-pcep-yang] includes association groups
    information.
 
 8.3.  Liveness Detection and Monitoring
@@ -1117,9 +1117,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-Litkowski, et al.          Expires May 1, 2020                 [Page 20]
+Litkowski, et al.         Expires June 17, 2020                [Page 20]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
 8.5.  Requirements on Other Protocols
@@ -1140,9 +1140,12 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
    document borrow some of the text from it.  Authors would also like to
    thank Adrian Farrel and Julien Meuric for the valuable comments.
 
-   Thanks to Emmanuel Baccelli for RTGDIR reviews.
+   Thanks to Emmanuel Baccelli for RTGDIR review.
 
    Thanks to Dale Worley for a detailed GENART review.
+
+   Thanks to Alvaro Retana, Benjamin Kaduk, Suresh Krishnan, Roman
+   Danyliw, Alissa Cooper and Eric Vyncke for IESG review.
 
 10.  References
 
@@ -1163,20 +1166,28 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
               DOI 10.17487/RFC5440, March 2009,
               <https://www.rfc-editor.org/info/rfc5440>.
 
+
+
+
+
+
+
+
+Litkowski, et al.         Expires June 17, 2020                [Page 21]
+
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
+
+
    [RFC5541]  Le Roux, JL., Vasseur, JP., and Y. Lee, "Encoding of
               Objective Functions in the Path Computation Element
               Communication Protocol (PCEP)", RFC 5541,
               DOI 10.17487/RFC5541, June 2009,
               <https://www.rfc-editor.org/info/rfc5541>.
 
-
-
-
-
-Litkowski, et al.          Expires May 1, 2020                 [Page 21]
-
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
-
+   [RFC7470]  Zhang, F. and A. Farrel, "Conveying Vendor-Specific
+              Constraints in the Path Computation Element Communication
+              Protocol", RFC 7470, DOI 10.17487/RFC7470, March 2015,
+              <https://www.rfc-editor.org/info/rfc7470>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -1187,6 +1198,12 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
               Extensions for Stateful PCE", RFC 8231,
               DOI 10.17487/RFC8231, September 2017,
               <https://www.rfc-editor.org/info/rfc8231>.
+
+   [RFC8253]  Lopez, D., Gonzalez de Dios, O., Wu, Q., and D. Dhody,
+              "PCEPS: Usage of TLS to Provide a Secure Transport for the
+              Path Computation Element Communication Protocol (PCEP)",
+              RFC 8253, DOI 10.17487/RFC8253, October 2017,
+              <https://www.rfc-editor.org/info/rfc8253>.
 
    [I-D.ietf-pce-association-group]
               Minei, I., Crabbe, E., Sivabalan, S., Ananthakrishnan, H.,
@@ -1208,31 +1225,20 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
               Computations", RFC 6007, DOI 10.17487/RFC6007, September
               2010, <https://www.rfc-editor.org/info/rfc6007>.
 
-   [RFC7470]  Zhang, F. and A. Farrel, "Conveying Vendor-Specific
-              Constraints in the Path Computation Element Communication
-              Protocol", RFC 7470, DOI 10.17487/RFC7470, March 2015,
-              <https://www.rfc-editor.org/info/rfc7470>.
+
+
+
+
+Litkowski, et al.         Expires June 17, 2020                [Page 22]
+
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
+
 
    [RFC7525]  Sheffer, Y., Holz, R., and P. Saint-Andre,
               "Recommendations for Secure Use of Transport Layer
               Security (TLS) and Datagram Transport Layer Security
               (DTLS)", BCP 195, RFC 7525, DOI 10.17487/RFC7525, May
               2015, <https://www.rfc-editor.org/info/rfc7525>.
-
-   [RFC8253]  Lopez, D., Gonzalez de Dios, O., Wu, Q., and D. Dhody,
-              "PCEPS: Usage of TLS to Provide a Secure Transport for the
-              Path Computation Element Communication Protocol (PCEP)",
-              RFC 8253, DOI 10.17487/RFC8253, October 2017,
-              <https://www.rfc-editor.org/info/rfc8253>.
-
-
-
-
-
-Litkowski, et al.          Expires May 1, 2020                 [Page 22]
-
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
-
 
    [RFC8281]  Crabbe, E., Minei, I., Sivabalan, S., and R. Varga, "Path
               Computation Element Communication Protocol (PCEP)
@@ -1244,7 +1250,7 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
               Dhody, D., Hardwick, J., Beeram, V., and J. Tantsura, "A
               YANG Data Model for Path Computation Element
               Communications Protocol (PCEP)", draft-ietf-pce-pcep-
-              yang-12 (work in progress), July 2019.
+              yang-13 (work in progress), October 2019.
 
 
 
@@ -1279,15 +1285,9 @@ Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
 
 
 
-
-
-
-
-
-
-Litkowski, et al.          Expires May 1, 2020                 [Page 23]
+Litkowski, et al.         Expires June 17, 2020                [Page 23]
 
-Internet-Draft    PCEP-Diversity-Constraints-Signaling      October 2019
+Internet-Draft    PCEP-Diversity-Constraints-Signaling     December 2019
 
 
 Appendix A.  Contributor Addresses
@@ -1341,4 +1341,4 @@ Authors' Addresses
 
 
 
-Litkowski, et al.          Expires May 1, 2020                 [Page 24]
+Litkowski, et al.         Expires June 17, 2020                [Page 24]
